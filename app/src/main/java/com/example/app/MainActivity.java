@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
         mWebView.setWebViewClient(new WebViewClient());
 
         // We use the direct string here just to be 100% sure the build doesn't fail
-        mWebView.loadUrl("https://YOUR-NETLIFY-URL-HERE.netlify.app");
+        mWebView.loadUrl("https://cautiousrentall.netlify.app/");
     }
 
     @Override
