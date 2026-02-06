@@ -31,7 +31,7 @@ public class MainActivity extends Activity {
 
         // 4. Load the content
         setContentView(mWebView);
-        mWebView.loadUrl("https://YOUR-SITE.netlify.app");
+        mWebView.loadUrl("https://cautiousrentall.netlify.app/");
     }
 
     // Prevents crash when hitting the back button
