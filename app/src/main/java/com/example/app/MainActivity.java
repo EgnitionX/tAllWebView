@@ -12,13 +12,24 @@ public class MainActivity extends Activity {
 
     @Override
     @SuppressLint("SetJavaScriptEnabled")
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mWebView = findViewById(R.id.activity_main_webview);
-        WebSettings webSettings = mWebView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        mWebView.setWebViewClient(new MyWebViewClient());
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    
+    mWebView = findViewById(R.id.activity_main_webview);
+    WebSettings webSettings = mWebView.getSettings(); // Fixed the dash to an equals sign
+    
+    // The "Magic Three" lines for React/Vite apps:
+    webSettings.setJavaScriptEnabled(true);
+    webSettings.setDomStorageEnabled(true);           // Fixed the 'truel' typo
+    webSettings.setDatabaseEnabled(true);            // Added for extra stability
+    
+    mWebView.setWebViewClient(new MyWebViewClient());
+    
+    // Make sure this line exists to actually start the load!
+    mWebView.loadUrl(getString(R.string.website_url));
+}
+
 
         // REMOTE RESOURCE
         // mWebView.loadUrl("https://cool-chaja-b1ab61.netlify.app/");
