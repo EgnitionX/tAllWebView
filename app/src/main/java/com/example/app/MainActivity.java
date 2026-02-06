@@ -17,18 +17,16 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mWebView = findViewById(R.id.activity_main_webview);
+        mWebView = (WebView) findViewById(R.id.activity_main_webview);
         
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
         webSettings.setDatabaseEnabled(true);
-        webSettings.setAllowFileAccess(true);
 
         mWebView.setWebViewClient(new WebViewClient());
         
-        // This pulls the URL you set in your strings.xml
-        mWebView.loadUrl(getString(R.string.website_url));
+        mWebView.loadUrl(getResources().getString(R.string.website_url));
     }
 
     @Override
