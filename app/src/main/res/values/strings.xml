@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<string name="website_url">https://cautiousrentall.netlify.app</string>
+
 <resources>
 
     <string name="app_name">RentAll</string>
+
+    <string name="website_url">https://cautiousrentall.netlify.app</string>
 
 </resources>
