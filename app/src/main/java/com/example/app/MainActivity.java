@@ -1,5 +1,6 @@
 package com.slymax.webview;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.webkit.WebSettings;
@@ -10,27 +11,33 @@ public class MainActivity extends Activity {
     private WebView mWebView;
 
     @Override
+    @SuppressLint("SetJavaScriptEnabled")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        // This creates the view directly in case the XML layout is broken
+        // 1. We create the WebView manually to avoid XML 'ID' bugs
         mWebView = new WebView(this);
-        setContentView(mWebView);
-
+        
+        // 2. Standard settings for modern apps
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
         webSettings.setDatabaseEnabled(true);
-        
+        webSettings.setLoadWithOverviewMode(true);
+        webSettings.setUseWideViewPort(true);
+
+        // 3. Keep the user INSIDE the app
         mWebView.setWebViewClient(new WebViewClient());
 
-        // We use the direct string here just to be 100% sure the build doesn't fail
-        mWebView.loadUrl("https://cautiousrentall.netlify.app/");
+        // 4. Load the content
+        setContentView(mWebView);
+        mWebView.loadUrl("https://YOUR-SITE.netlify.app");
     }
 
+    // Prevents crash when hitting the back button
     @Override
     public void onBackPressed() {
-        if(mWebView.canGoBack()) {
+        if (mWebView != null && mWebView.canGoBack()) {
             mWebView.goBack();
         } else {
             super.onBackPressed();
